@@ -1,0 +1,162 @@
+@import '../../styles/global.scss';
+
+.color-card-add{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  .add-header{
+    width: 1400px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .back-btn{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      cursor: pointer;
+      span{
+        margin-left: 10px;
+        font-size: 16px;
+      }
+    }
+    .save-btn{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      cursor: pointer;
+      span{
+        margin-right: 10px;
+        font-size: 16px;
+      }
+    }
+    .color-pre-btn{
+      width: 80px;
+      height: 30px;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 3px solid #dcdde1;
+    }
+    .my-color-picker{
+      width: 513px;
+      height: 310px;
+      z-index: 10;
+    }
+  }
+  .add-container{
+    width: 1400px;
+    height: calc(100vh - 60px);
+    background: #fff;
+    .card-box{
+      box-shadow: 0px 0px 7px 0px rgba($color: #000000, $alpha: 0.1);
+      height: calc(100vh - 80px);
+      border-radius: 10px;
+      .card{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        height: calc(100vh - 130px);
+        .item{
+          width: 20%;
+          height: 25%;
+          cursor: pointer;
+          position: relative;
+        }
+        .item-mask{
+          display: none;
+          position: absolute;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          .color-value-input{
+            margin-bottom: 5%;
+            color: #fff;
+            background: rgba(0, 0, 0, 0);
+            padding: 5px;
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            text-align: center;
+          }
+          .color-name-input{
+            margin-top: 5%;
+            color: #fff;
+            background: rgba(0, 0, 0, 0);
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);;
+            padding: 5px;
+            border-radius: 10px;
+            text-align: center;
+          }
+        }
+        .item:hover{
+          .item-mask{
+            position: absolute;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+          }
+          .msk-0{
+            border-top-left-radius: 10px;
+          }
+          .msk-4{
+            border-top-right-radius: 10px;
+          }
+        }
+        .item:first-child{
+          border-top-left-radius: 10px;
+        }
+        .item:nth-child(5){
+          border-top-right-radius: 10px;
+        }
+        // .item:nth-child(16){
+        //   border-bottom-left-radius: 10px;
+        // }
+        // .item:nth-child(20){
+        //   border-bottom-right-radius: 10px;
+        // }
+      }
+      .card-title{
+        width: 100%;
+        height: 50px;
+        input{
+          width: 100%;
+          height: 100%;
+          outline: none;
+          border: none;
+          padding: 0px 20px;
+          font-size: 16px;
+          border-top-right-radius: 0px;
+          border-top-left-radius: 0px;
+          border-bottom-right-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+      }
+    }
+  }
+}
+.copy-modal-color{
+  color: #fff;
+  font-size: 50px;
+  p{
+    text-align: center;
+  }
+  .title{
+    font-size: 50px;
+  }
+  .color-value{
+    font-size: 60px;
+  }
+}

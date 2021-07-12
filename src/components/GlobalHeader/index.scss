@@ -1,0 +1,113 @@
+@import "../../styles/theme.scss";
+
+.globalHeader{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #fff;
+  width: 100vw;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding: 0px 20px;
+  z-index: 99;
+  .header-logo{
+    display: flex;
+    align-items: center;
+    img{
+      width: 200px;
+      height: 30px;
+      margin-right: 15px;
+    }
+  }
+  .header-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #bfbfbf;
+    height: 35px;
+    border-radius: 35px;
+    padding: 0px 0px 0px 15px;
+    input{
+      outline: none;
+      border: none;
+      width: 350px;
+    }
+    .search-btn:hover{
+      background: #eaedf3;
+    }
+    .search-btn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 100%;
+      background: #f4f5f7;
+      border-bottom-right-radius: 35px;
+      border-top-right-radius: 35px;
+      border-left: 1px solid #bfbfbf;
+      cursor: pointer;
+      img{
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  .header-option{
+    display: flex;
+    align-items: center;
+    .btn-login{
+      margin-left: 15px;
+    }
+    .btn-login:hover{
+      color: $themeColor;
+      border-color: $themeColor;
+      background: #fff;
+      
+    }
+    .MuiListItemIcon-root{
+      min-width: 40px;
+    }
+  }
+  
+}
+.header-option-item{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .option-icon{
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+  }
+  .option-title{
+    font-size: 14px;
+  }
+}
+
+.header-user-card{
+  min-width: 250px;
+  .user-card-item{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .user-card-item-name{
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1e272e;
+  }
+  .user-card-bottom-options{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 5px;
+  }
+}

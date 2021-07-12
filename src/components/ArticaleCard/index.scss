@@ -1,0 +1,94 @@
+@import "../../styles/theme.scss";
+
+.articale-card{
+  padding: 20px 20px 0px 20px;
+  // background: #fff;
+  // max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  .arctcale-img{
+    width: 300px;
+    height: 200px;
+    margin-left: 20px;
+  }
+  .articale-title{
+    font-size: 18px;
+    color: rgba(0,0,0,.85);
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  .articale-title:hover{
+    color: $themeColor;
+  }
+  .tags-box{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    span{
+      padding: 2px 5px;
+      background: #f1f2f6;
+      font-size: 12px;
+      color: rgba(0,0,0,.75);
+      margin-right: 10px;
+      border-radius: 4px;
+    }
+  }
+  .articale-desc{
+    margin-bottom: 15px;
+    color: rgba(0,0,0,.75);
+    font-size: 14px;
+  }
+  .articale-user-info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+    .info-avatar{
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    .info-name{
+      color: $themeColor;
+      font-size: 12px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .info-time{
+      color: rgba(0,0,0,.75);
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  }
+  .article-options{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d1d0d0;
+    .line{
+      width: 1px;
+      height: 10px;
+      background: #d1d0d0;
+    }
+    .option:nth-of-type(1){
+      padding: 0px 15px 0px 0px;
+    }
+    .option{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0px 15px;
+      .option-icon{
+        width: 18px;
+        height: 18px;
+        color: #bfbfbf;
+      }
+      span{
+        margin-left: 10px;
+        font-size: 12px;
+        color: rgba(0,0,0,.75);
+      }
+    }
+  }
+}

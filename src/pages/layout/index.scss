@@ -1,0 +1,18 @@
+.layout-warp{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #fafafa;
+  .main-layout{
+    padding-left: 240px;
+    padding-top: 56px;
+    transition: .3s ease;
+  }
+  .layout-showInfo-tran{
+    padding-left: 70px;
+    padding-top: 56px;
+  }
+  .page-warp{
+    background: #fafafa;
+  }
+}

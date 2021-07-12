@@ -1,0 +1,11 @@
+.page-shop{
+  display: flex;
+  flex-wrap: wrap;
+  .tag{
+    width: 200px;
+    height: 100px;
+    background: #bfbfbf;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}

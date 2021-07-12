@@ -1,0 +1,42 @@
+.swiper-wrap{
+  position: relative;
+  width: 100%;
+  height: 350px;
+  .item-img{
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    cursor: pointer;
+  }
+  .swiper-option{
+    position: absolute;
+    z-index: 10;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    .option-box{
+      position: relative;
+      margin-left: 5px;
+      cursor: pointer;
+      .item-option{
+        width: 70px;
+        height: 40px;
+      }
+      .option-warp{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        width: 70px;
+        height: 40px;
+        background: #000;
+      }
+      .option-warp:hover{
+        opacity: 0 !important;
+      }
+    }
+  }
+}
