@@ -55008,54 +55008,174 @@
       u++
     )
       a.push({ name: 'tag-'.concat(u), url: 'url-'.concat(u) });
-    var c = (e) => {
-      var t = Object(o['useState'])(a),
-        n = Object(r['a'])(t, 2),
-        u = n[0],
-        c = (n[1], Object(o['useState'])(null)),
-        l = Object(r['a'])(c, 2),
-        s = l[0],
-        f = l[1],
-        d = (e) => {
-          var t = document.getElementsByClassName('tag');
-          console.log('tagDoms:', t),
+    var c = [
+        { name: '1', links: [{ name: '1-1' }, { name: '1-2' }] },
+        { name: '2', links: [{ name: '2-1' }, { name: '2-2' }] },
+        { name: '3', links: [{ name: '3-1' }, { name: '3-2' }] },
+      ],
+      l = (e) => {
+        var t = Object(o['useState'])(c),
+          n = Object(r['a'])(t, 2),
+          a = n[0],
+          u = n[1],
+          l = Object(o['useState'])(null),
+          s = Object(r['a'])(l, 2),
+          f = s[0],
+          d = s[1],
+          p = Object(o['useState'])(0),
+          h = Object(r['a'])(p, 2),
+          v = h[0],
+          g = h[1],
+          m = Object(o['useState'])(0),
+          y = Object(r['a'])(m, 2),
+          b = y[0],
+          x = y[1],
+          w = Object(o['useState'])(0),
+          A = Object(r['a'])(w, 2),
+          E = A[0],
+          O = A[1],
+          j = -1,
+          S = -1,
+          k = (e) => {
+            var t = document.getElementsByClassName('item');
             t.forEach((t, n) => {
-              t.style.background = e == n ? 'red' : '#bfbfbf';
+              t.style.background = e == n ? '#70a1ff' : '#dfe4ea';
             });
-        },
-        p = (e, t) => {
-          console.log('onDragStart', e, t), f(t);
-        },
-        h = (e, t) => {
-          console.log('onDragEnter', e, t), d(s != t ? t : -1);
-        },
-        v = (e, t) => {};
-      return Object(i['jsx'])('div', {
-        className: 'page-shop',
-        children: u.map((e, t) =>
-          Object(i['jsx'])(
-            'div',
-            {
-              id: 'tag-'.concat(t),
-              className: 'tag',
-              draggable: 'true',
-              onDragStart: (e) => {
-                p(e, t);
+          },
+          C = (e, t, n) => {
+            console.log('onDragStartTag:', e, t, n), d(e), x(t), O(n), g(1);
+          },
+          P = (e, t) => {
+            e.preventDefault(),
+              console.log('onDragEnterBox:', e, t),
+              k(t != b ? t : -1);
+          },
+          M = (e, t, n) => {
+            e.preventDefault(),
+              (j = t),
+              (S = n),
+              console.log('tag\u89e6\u53d1-\u7ed3\u675f\u62d6\u52a8', t, n);
+            var r = document.getElementById('tag-'.concat(t, '-').concat(n));
+            r && (r.style.borderLeft = 'none');
+          },
+          T = (e, t) => {
+            var n = JSON.parse(JSON.stringify(a));
+            if (
+              (e.preventDefault(),
+              console.log('box\u89e6\u53d1-\u7ed3\u675f\u62d6\u52a8', t),
+              k(-1),
+              1 == v)
+            )
+              if (t != b) {
+                var r = n[b].links[E];
+                n[b].links.splice(E, 1),
+                  console.log(
+                    '\u6dfb\u52a0\u5230\u6307\u5b9a\u4f4d\u7f6e\uff1a',
+                    j,
+                    S,
+                  ),
+                  0 == S
+                    ? n[t].links.splice(0, 0, r)
+                    : S >= 0
+                    ? n[t].links.splice(S, 0, r)
+                    : n[t].links.push(r),
+                  console.log(n),
+                  u(n),
+                  (j = -1),
+                  (S = -1);
+              } else if (
+                (console.log(
+                  '\u5728\u5f53\u524d\u6587\u4ef6\u5939\u4e0b\u79fb\u52a8s',
+                  j,
+                  S,
+                ),
+                f.target.id != 'tag-'.concat(j, '-').concat(S) && S >= 0)
+              ) {
+                var o = n[b].links[E];
+                n[t].links.splice(E, 1),
+                  n[t].links.splice(S, 0, o),
+                  console.log(n),
+                  u(n),
+                  (j = -1),
+                  (S = -1);
+              } else {
+                var i = document.getElementsByClassName('ele');
+                i.forEach((e, t) => {
+                  e.style.borderLeft = 'none';
+                });
+              }
+          },
+          R = (e, t) => {
+            var n = document.getElementsByClassName('item'),
+              r = document.getElementsByClassName('ele');
+            console.log('tagDom:', r),
+              n.forEach((t, n) => {
+                t.style.background = e == n ? '#70a1ff' : '#dfe4ea';
+              }),
+              r.forEach((n, r) => {
+                console.log(n),
+                  n.id == 'tag-'.concat(e, '-').concat(t)
+                    ? (n.style.borderLeft = '5px solid red')
+                    : (n.style.borderLeft = 'none');
+              });
+          },
+          _ = (e, t, n) => {
+            if (
+              (e.preventDefault(),
+              console.log('onDragEnterTag:', e, t, n, f),
+              f.target.id != 'tag-'.concat(t, '-').concat(n))
+            )
+              R(t, n);
+            else {
+              var r = document.getElementsByClassName('ele');
+              r.forEach((e, t) => {
+                e.style.borderLeft = 'none';
+              });
+            }
+          };
+        return Object(i['jsx'])('div', {
+          className: 'page-shop',
+          children: a.map((e, t) =>
+            Object(i['jsx'])(
+              'div',
+              {
+                className: 'item',
+                onDragOver: (e) => {
+                  e.preventDefault();
+                },
+                onDragEnter: (e) => {
+                  P(e, t);
+                },
+                onDrop: (e) => T(e, t),
+                children: e.links.map((e, n) =>
+                  Object(i['jsx'])(
+                    'div',
+                    {
+                      className: 'ele',
+                      id: 'tag-'.concat(t, '-').concat(n),
+                      draggable: 'true',
+                      onDragEnter: (e) => {
+                        _(e, t, n);
+                      },
+                      onDragOver: (e) => {
+                        e.preventDefault();
+                      },
+                      onDragStart: (e) => {
+                        C(e, t, n);
+                      },
+                      onDrop: (e) => M(e, t, n),
+                      children: e.name,
+                    },
+                    n,
+                  ),
+                ),
               },
-              onDragEnter: (e) => {
-                h(e, t);
-              },
-              onDragOver: (e) => {
-                v(e, t);
-              },
-              children: e.name,
-            },
-            t,
+              t,
+            ),
           ),
-        ),
-      });
-    };
-    t['default'] = c;
+        });
+      };
+    t['default'] = l;
   },
   'cq/+': function (e, t, n) {
     var r = n('mc0g'),
