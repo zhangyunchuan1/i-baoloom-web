@@ -7,7 +7,7 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      redirect: '/layout',
+      redirect: '/layout/home',
       component: '@/pages/layout/index',
     },
     {

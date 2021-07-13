@@ -63578,7 +63578,7 @@
       var e = [
         {
           path: '/',
-          redirect: '/layout',
+          redirect: '/layout/home',
           component: n('bybr').default,
           exact: !0,
         },
