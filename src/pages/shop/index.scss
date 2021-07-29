@@ -1,29 +1,157 @@
+@import '../../styles/theme.scss';
+@import '../../styles/global.scss';
 .page-shop{
-  // display: flex;
-  // flex-wrap: wrap;
   padding: 30px;
-  .tag{
-    width: 200px;
-    height: 100px;
-    background: #bfbfbf;
-    margin-right: 20px;
-    margin-bottom: 20px;
-  }
-  .item{
+  .menu-top{
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 20px;
-    background: #dfe4ea;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 10px;
-    .ele{
-      background: #bfbfbf;
-      padding: 10px;
+    .menu-boxs{
+      padding: 30px 10px;
+      background: #fff;
       border-radius: 10px;
-      margin-right: 10px;
-      cursor: pointer;
+      text-align: center;
+      line-height: 60px;
+      margin-right: 20px;
+      min-width: 230px;
+      flex: 0 0 auto;
+      .box{
+        padding: 0px 5px;
+        height: 50px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        text-align: center;
+        line-height: 60px;
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        box-sizing: border-box;
+        .box-color-name{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .box-color{
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 20px;
+            margin-right: 10px;
+          }
+          .box-name{
+            height: 50px;
+            line-height: 50px;
+          }
+        }
+        .box-num{
+          height: 50px;
+          line-height: 50px;
+          color: rgba(99, 110, 114,0.6);
+          display: block;
+        }
+        .box-option{
+          
+          display: none;
+        }
+        .option-warp{
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+        }
+      }
+      .box:hover{
+        background: rgba(116, 185, 255,0.2);
+      }
+      .box:hover .box-num{
+        display: none;
+      }
+      .box:hover .box-option{
+        display: block;
+      }
+      .selected-box{
+        background: rgba(116, 185, 255,0.4) !important
+      }
+    }
+    .menu-tags{
+      // display: flex;
+      // flex-wrap: wrap;
+      // justify-content: flex-start;
+      flex: 1 1 auto;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      .tag{
+        width: 240px;
+        float: left;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        background: #fff;
+        box-shadow: 0px 0px 7px 0px rgba($color: #000000, $alpha: 0.1);
+        margin-right: 20px;
+        margin-top: 20px;
+        cursor: pointer;
+        .tag-title{
+          text-align: left;
+        }
+        .tag-desc{
+          height: 45px;
+          font-size: 14px;
+          color: rgba(53, 59, 72,1.0);
+          text-align: left;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+        .tag-bot{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+          .tag-bot-left{
+            // width: 150px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+            .tag-logo{
+              width: 15px;
+              height: 15px;
+              margin-right: 5px;
+            }
+            .tag-url{
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              overflow: hidden;
+            }
+          }
+          .tag-bot-right{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+            display: none;
+            background: #fff;
+            img:first-of-type{
+              margin-right: 3px;
+            }
+            img{
+              width: 20px;
+            }
+          }
+        }
+      }
+      .tag:hover .tag-bot-right{
+        display: block !important;
+      }
     }
   }
-
 }
