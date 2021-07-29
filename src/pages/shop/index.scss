@@ -82,6 +82,18 @@
       background: #fff;
       padding: 10px 20px;
       border-radius: 10px;
+      .tag-cover{
+        position: relative;
+      }
+      .tag-cover::before{
+        content: " ";
+        width: 5px;
+        height: 100%;
+        background: #6ca8da;
+        position: absolute;
+        left: -12px;
+        top: 0px;
+      }
       .tag{
         width: 240px;
         float: left;
