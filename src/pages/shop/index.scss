@@ -70,8 +70,14 @@
       .box:hover .box-option{
         display: block;
       }
-      .selected-box{
-        background: rgba(116, 185, 255,0.4) !important
+      .select-menu{
+        background: rgba(116, 185, 255,0.4) !important;
+      }
+      .tag-to-menu{
+        background: rgba(116, 185, 255,0.7) !important;
+      }
+      .menu-to-menu{
+        border-top: 3px solid red;
       }
     }
     .menu-tags{
@@ -82,6 +88,7 @@
       background: #fff;
       padding: 10px 20px;
       border-radius: 10px;
+      min-height: calc(100vh - 116px);
       .tag-cover{
         position: relative;
       }

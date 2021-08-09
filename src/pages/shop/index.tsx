@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createElement } from 'react';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import EditIcon from '@material-ui/icons/Edit';
 import name from '@/images/icons/icons-edit.png';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const tags = [
   {
@@ -94,10 +97,30 @@ const tags = [
   },
 ];
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }),
+);
+
 import './index.scss';
 
 const ShopPage: React.FC = (props) => {
   let _list = JSON.parse(JSON.stringify(tags));
+
+  //弹窗变量
+  const classes = useStyles();
+  const [addTagModal, setAddTagModal] = React.useState(false);
 
   const [list, setList] = useState(_list);
   const [selectMenu, setSelectMenu] = useState(0);
@@ -106,48 +129,65 @@ const ShopPage: React.FC = (props) => {
   const [dragType, setDragType] = useState(-1); //拖动类型：1-菜单、2-标签
   const [moveTagIndex, setMoveTagIndex] = useState(-1); //当前拖动的标签下标
   const [targetTagIndex, setTargetTagIndex] = useState(-1); //目标标签
+  const [moveMenuIndex, setMoveMenuIndex] = useState(-1); //当前拖动的菜单下标
+  const [targetMenuIndex, setTargetMenuIndex] = useState(-1); //目标菜单
 
   const handleSelectMenu = (index: number) => {
     setSelectMenu(index);
   };
 
-  //移动到菜单
+  //移动覆盖菜单
   const handleCoverMenu = (e: any, menuIndex: number) => {
     e.preventDefault();
-    setFutureMenuIndex(menuIndex);
+    if (dragType === 1 && moveMenuIndex != menuIndex) {
+      //菜单之间的移动
+      setTargetMenuIndex(menuIndex);
+    } else if (dragType === 2) {
+      //标签添加到菜单
+      setFutureMenuIndex(menuIndex);
+    }
+    setTargetTagIndex(-1);
   };
 
   //移动覆盖标签
   const handleCoverTag = (e: any, tagIndex: number) => {
     e.preventDefault();
-    if (moveTagIndex != tagIndex) {
+    if (moveTagIndex != tagIndex && dragType === 2) {
       setTargetTagIndex(tagIndex);
     }
   };
 
   //在菜单中释放
   const handleLeaveMenu = (menuIndex: number) => {
-    console.log(`菜单中释放,菜单索引 - ${menuIndex}`);
-    setFutureMenuIndex(-1); //移除菜单覆盖时的背景
-    if (selectMenu != menuIndex) {
-      //释放的菜单不是同一级
-      let copyList = JSON.parse(JSON.stringify(list));
-      let moveTag = copyList[selectMenu].child[moveTagIndex]; //移动的标签
-      copyList[menuIndex].child.push(moveTag); //目标文件夹新增标签
-      copyList[selectMenu].child.splice(moveTagIndex, 1); //原文件夹删除标签
-      console.log('移动后的list:', copyList);
-      setList(copyList);
+    if (moveMenuIndex != menuIndex) {
+      if (dragType === 2) {
+        setFutureMenuIndex(-1); //移除菜单覆盖时的背景
+        if (selectMenu != menuIndex) {
+          //释放的菜单不是同一级
+          let copyList = JSON.parse(JSON.stringify(list));
+          let moveTag = copyList[selectMenu].child[moveTagIndex]; //移动的标签
+          copyList[menuIndex].child.push(moveTag); //目标文件夹新增标签
+          copyList[selectMenu].child.splice(moveTagIndex, 1); //原文件夹删除标签
+          setList(copyList);
+        }
+      } else if (dragType === 1) {
+        console.log('333333333', targetMenuIndex);
+        let copyList = JSON.parse(JSON.stringify(list));
+        copyList = moveTagAction(copyList, targetMenuIndex, moveMenuIndex);
+        setList(copyList);
+        if (moveMenuIndex > targetMenuIndex) {
+          setSelectMenu(targetMenuIndex);
+        } else {
+          setSelectMenu(targetMenuIndex - 1);
+        }
+      }
     }
     //清空数据
-    setMoveTagIndex(-1);
-    setTargetTagIndex(-1);
-    setTargetTagIndex(-1);
+    clearState();
   };
 
   //在标签中释放
   const handleLeaveTag = (tagIndex: number) => {
-    console.log(`标签中释放，菜单索引 - ${selectMenu}，标签索引 - ${tagIndex}`);
-    console.log(moveTagIndex, targetTagIndex, moveTagIndex != targetTagIndex);
     if (moveTagIndex != targetTagIndex && targetTagIndex != -1) {
       //释放的菜单不是同一级
       let copyList = JSON.parse(JSON.stringify(list));
@@ -156,35 +196,71 @@ const ShopPage: React.FC = (props) => {
         targetTagIndex,
         moveTagIndex,
       );
-      console.log('移动后的list:', copyList);
       setList(copyList);
     }
     //清空数据
-    setMoveTagIndex(-1);
-    setTargetTagIndex(-1);
-    setTargetTagIndex(-1);
+    clearState();
+  };
+
+  //开始移动菜单
+  const handleStartMoveMenu = (e: any, menuIndex: number) => {
+    var img = new Image(50, 50);
+    img.src =
+      'https://iph.href.lu/100x50?text=%E7%A7%BB%E5%8A%A8%E4%B9%A6%E7%AD%BE&fg=666666&bg=cccccc';
+    e.dataTransfer.setDragImage(img, -10, -10);
+    setDragType(1);
+    setMoveMenuIndex(menuIndex);
   };
 
   //开始拖动标签
-  const handleStartMoveTag = (tagIndex: number) => {
-    console.log('开始拖动的标签：', tagIndex);
+  const handleStartMoveTag = (e: any, tagIndex: number) => {
+    console.log(e);
+    var img = new Image(50, 50);
+    img.src =
+      'https://iph.href.lu/100x50?text=%E7%A7%BB%E5%8A%A8%E4%B9%A6%E7%AD%BE&fg=666666&bg=cccccc';
+    e.dataTransfer.setDragImage(img, -10, -10);
+    setDragType(2);
     setMoveTagIndex(tagIndex);
   };
 
-  //移动标签位置
-  const moveTagAction = (arr: any, index: number, tindex: number) => {
-    //如果当前元素在拖动目标位置的下方，先将当前元素从数组拿出，数组长度-1，我们直接给数组拖动目标位置的地方新增一个和当前元素值一样的元素，
-    //我们再把数组之前的那个拖动的元素删除掉，所以要len+1
-    if (index > tindex) {
-      arr.splice(tindex, 0, arr[index]);
-      arr.splice(index + 1, 1);
-    } else {
-      //如果当前元素在拖动目标位置的上方，先将当前元素从数组拿出，数组长度-1，我们直接给数组拖动目标位置+1的地方新增一个和当前元素值一样的元素，
-      //这时，数组len不变，我们再把数组之前的那个拖动的元素删除掉，下标还是index
-      arr.splice(tindex + 1, 0, arr[index]);
-      arr.splice(index, 1);
+  //拖动完成，清空所有状态
+  const clearState = () => {
+    setMoveTagIndex(-1);
+    setTargetTagIndex(-1);
+    setMoveTagIndex(-1);
+    setFutureMenuIndex(-1);
+    setDragType(-1);
+    setTargetMenuIndex(-1);
+    setMoveMenuIndex(-1);
+  };
+
+  const moveTagAction = (
+    arr: any,
+    targetTagIndex: number,
+    moveTagIndex: number,
+  ) => {
+    let newArr = JSON.parse(JSON.stringify(arr));
+    if (moveTagIndex < targetTagIndex) {
+      newArr.splice(targetTagIndex, 0, arr[moveTagIndex]);
+      newArr.splice(moveTagIndex, 1);
+    } else if (moveTagIndex > targetTagIndex) {
+      newArr.splice(targetTagIndex, 0, arr[moveTagIndex]);
+      newArr.splice(moveTagIndex + 1, 1);
     }
-    return arr;
+    console.log('22222222', newArr);
+    return newArr;
+  };
+
+  const handleGotoUrl = (item: any) => {
+    window.open(item.url);
+  };
+
+  const handleCloseAddTagModal = () => {
+    setAddTagModal(false);
+  };
+
+  const handleOpenAddTagMenu = () => {
+    setAddTagModal(true);
   };
 
   return (
@@ -194,12 +270,12 @@ const ShopPage: React.FC = (props) => {
           {list.map((item: any, index: number) => {
             return (
               <div
-                className={`box ${
-                  selectMenu == index || futureMenuIndex == index
-                    ? 'selected-box'
-                    : ''
-                }`}
+                className={`box ${selectMenu == index ? 'select-menu' : ''} ${
+                  futureMenuIndex == index ? 'tag-to-menu' : ''
+                } ${targetMenuIndex == index ? 'menu-to-menu' : ''} `}
                 key={index}
+                draggable={true}
+                onDragStart={(e) => handleStartMoveMenu(e, index)}
                 onClick={() => handleSelectMenu(index)}
                 onDragOver={(e) => handleCoverMenu(e, index)}
                 onDrop={() => handleLeaveMenu(index)}
@@ -211,16 +287,32 @@ const ShopPage: React.FC = (props) => {
                 <span className="box-num">{item.child.length}</span>
                 <div className="box-option">
                   <div className="option-warp">
-                    <AddBoxIcon
-                      style={{
-                        fontSize: 20,
-                        color: 'rgba(99, 110, 114,0.6)',
-                        marginRight: '5px',
-                      }}
-                    />
-                    <EditIcon
-                      style={{ fontSize: 20, color: 'rgba(99, 110, 114,0.6)' }}
-                    />
+                    <IconButton
+                      size="small"
+                      color="primary"
+                      aria-label="add to shopping cart"
+                      onClick={handleOpenAddTagMenu}
+                    >
+                      <AddBoxIcon
+                        style={{
+                          fontSize: 20,
+                          color: 'rgba(99, 110, 114,0.6)',
+                        }}
+                      />
+                    </IconButton>
+                    <IconButton
+                      size="small"
+                      color="primary"
+                      aria-label="add to shopping cart"
+                      onClick={handleOpenAddTagMenu}
+                    >
+                      <EditIcon
+                        style={{
+                          fontSize: 20,
+                          color: 'rgba(99, 110, 114,0.6)',
+                        }}
+                      />
+                    </IconButton>
                   </div>
                 </div>
               </div>
@@ -234,9 +326,10 @@ const ShopPage: React.FC = (props) => {
                 className={targetTagIndex == index ? 'tag tag-cover' : 'tag'}
                 draggable={true}
                 key={index}
-                onDragStart={() => handleStartMoveTag(index)}
+                onDragStart={(e) => handleStartMoveTag(e, index)}
                 onDragOver={(e) => handleCoverTag(e, index)}
                 onDrop={() => handleLeaveTag(index)}
+                onClick={() => handleGotoUrl(item)}
               >
                 <h3 className="tag-title">{item.title}</h3>
                 <p className="tag-desc">{item.des}</p>
@@ -267,6 +360,28 @@ const ShopPage: React.FC = (props) => {
           })}
         </div>
       </div>
+      {/* 新增菜单 */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={addTagModal}
+        onClose={handleCloseAddTagModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={addTagModal}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">Transition modal</h2>
+            <p id="transition-modal-description">
+              react-transition-group animates me.
+            </p>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 };

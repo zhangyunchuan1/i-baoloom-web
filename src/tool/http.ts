@@ -3,6 +3,7 @@ import QS from 'qs';
 import { getDvaApp } from 'umi';
 
 axios.defaults.baseURL = 'http://47.108.158.162/api';
+// axios.defaults.baseURL = 'http://127.0.0.1:7001';
 axios.defaults.timeout = 5000; //请求超时
 
 axios.defaults.headers.common['Content-Type'] =
