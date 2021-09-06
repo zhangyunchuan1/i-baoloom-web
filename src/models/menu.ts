@@ -2,6 +2,7 @@ import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
 
 export interface MenuModelState {
   currentPath: string;
+  userTools: [];
 }
 
 export interface MenuModelType {
@@ -10,6 +11,7 @@ export interface MenuModelType {
   effects: {};
   reducers: {
     changeCurrentPath: Reducer<MenuModelState>;
+    changeUserTools: any;
   };
   subscriptions: {
     setup: Subscription;
@@ -21,6 +23,7 @@ const MenuModel: MenuModelType = {
 
   state: {
     currentPath: '/layout/home',
+    userTools: [],
   },
 
   effects: {},
@@ -29,6 +32,13 @@ const MenuModel: MenuModelType = {
       return {
         ...state,
         ...action.payload,
+      };
+    },
+    changeUserTools: (state: any, action: { payload: any; }) => {
+      console.log('444555454545:', action.payload)
+      return {
+        ...state,
+        userTools: action.payload,
       };
     },
   },

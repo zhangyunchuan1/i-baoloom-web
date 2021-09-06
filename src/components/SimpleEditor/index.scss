@@ -1,0 +1,33 @@
+.simple-editor-warp{
+  width: 100%;
+  .simple-editor{
+    width: 100%;
+    height: fit-content;
+    .w-e-text-container{
+      min-height: 50px !important;
+      height: auto !important;
+      background: #f7f9fa !important;
+      border: none !important;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      .w-e-text{
+        min-height: 50px !important;
+      }
+    }
+    .w-e-toolbar{
+      background: #f7f9fa !important;
+      border: none !important;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      .w-e-menu i{
+        color: #999 !important;
+      }
+      .w-e-menu:hover{
+        background: #f7f9fa !important;
+      }
+      .w-e-menu i{
+        color: #999 !important;
+      }
+    }
+  }
+}

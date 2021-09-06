@@ -8,6 +8,9 @@ import {
   Avatar,
   Popover,
   Divider,
+  List,
+  ListItem,
+  ListItemText
 } from '@material-ui/core';
 import { useDispatch, history } from 'umi';
 import { MenuProps } from '@material-ui/core/Menu';
@@ -93,6 +96,7 @@ const GlobalHeader: React.FC<IProps> = (props) => {
     setUserCardEl(event.currentTarget);
   };
 
+  //关闭弹窗
   const handleCloseUserInfoPopover = () => {
     setUserCardEl(null);
   };
@@ -127,6 +131,15 @@ const GlobalHeader: React.FC<IProps> = (props) => {
     return fristName;
   };
 
+  const handleGoToTools = () => {
+    history.push('/layout/toolintroduce');
+  }
+
+  const handleGoToUserCenter = () => {
+    history.push('/layout/userCenter');
+    handleCloseUserInfoPopover();
+  }
+
   return (
     <header className="globalHeader">
       <div className="header-logo">
@@ -145,7 +158,7 @@ const GlobalHeader: React.FC<IProps> = (props) => {
             <Backup />
           </IconButton>
         )}
-        <IconButton aria-label="add an alarm">
+        <IconButton aria-label="add an alarm" onClick={handleGoToTools}>
           <Apps />
         </IconButton>
         {/* 登录及用户信息 */}
@@ -214,6 +227,15 @@ const GlobalHeader: React.FC<IProps> = (props) => {
                 {props.userInfo.userName}
               </span>
             </div>
+            <Divider />
+            <List component="nav" aria-label="secondary mailbox folders">
+              <ListItem button>
+                <ListItemText primary="个人中心" onClick={handleGoToUserCenter}/>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="设置" />
+              </ListItem>
+            </List>
             <Divider />
             <div className="user-card-bottom-options">
               <Button size="small" onClick={handleLoginOut}>

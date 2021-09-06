@@ -1,6 +1,6 @@
 .layout-warp{
   position: relative;
-  width: 100vw;
+  width: calc(100vw - 8px);
   height: 100vh;
   background: #fafafa;
   .main-layout{

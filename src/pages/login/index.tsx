@@ -110,6 +110,7 @@ const LoginPage: React.FC<PageProps> = (props) => {
         sessionStorage.setItem('userInfo', JSON.stringify(res.data.user));
         sessionStorage.setItem('token', res.data.token);
         sessionStorage.setItem('loginStatus', JSON.stringify(true));
+        console.log('sessionStorage存储的信息：', sessionStorage.getItem('userInfo'))
         history.goBack();
       } else {
         toast.error(res.message, {
@@ -211,7 +212,7 @@ const LoginPage: React.FC<PageProps> = (props) => {
             />
             <input
               className="form-inp password"
-              type="text"
+              type="password"
               placeholder="密码"
               onChange={handleChangePassword}
             />
@@ -244,13 +245,13 @@ const LoginPage: React.FC<PageProps> = (props) => {
             />
             <input
               className="form-inp register-password"
-              type="text"
+              type="password"
               placeholder="密码"
               onChange={handleChangePassword}
             />
             <input
               className="form-inp register-password-agin"
-              type="text"
+              type="password"
               placeholder="再次确认密码"
               onChange={handleChangeRePassword}
             />

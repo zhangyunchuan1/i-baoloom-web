@@ -1,15 +1,18 @@
 @import "../../styles/theme.scss";
 
 .articale-card{
-  padding: 20px 20px 0px 20px;
-  // background: #fff;
-  // max-width: 960px;
+  padding: 20px 10px 0px 10px;
   display: flex;
   justify-content: space-between;
-  .arctcale-img{
+  border-bottom: 1px solid #f1f1f1;
+  .card-img{
     width: 300px;
-    height: 200px;
-    margin-left: 20px;
+    height: 220px;
+    margin-right: 10px;
+    border-radius: 10px;
+  }
+  .artical-content{
+    flex: 1;
   }
   .articale-title{
     font-size: 18px;
@@ -37,6 +40,13 @@
     margin-bottom: 15px;
     color: rgba(0,0,0,.75);
     font-size: 14px;
+    // width: 500px;
+    height: 65px;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;//当属性值为3，表示超出3行隐藏
   }
   .articale-user-info{
     display: flex;
@@ -65,7 +75,6 @@
     justify-content: flex-start;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom: 1px solid #d1d0d0;
     .line{
       width: 1px;
       height: 10px;

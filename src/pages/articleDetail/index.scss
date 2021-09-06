@@ -1,0 +1,219 @@
+.page-article-detail{
+  padding: 30px;
+  .article-detail-content{
+    width: 100%;
+    min-height: calc(100vh - 116px);
+    display: flex;
+    justify-content: space-between;
+    .main{
+      width: calc(100% - 310px);
+      min-height: calc(100vh - 176px);
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px 20px;
+      .article-title{
+        font-size: 26px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .user-info-num{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        .left{
+          .user-name{
+            color: #bfbfbf;
+            margin-right: 20px;
+            cursor: pointer;
+          }
+          .user-name:hover{
+            color: #6ab04c;
+          }
+          .upload-time{
+            color: #bfbfbf;
+            margin-right: 10px;
+          }
+        }
+        .statistics{
+          span{
+            color: #bfbfbf;
+            margin-left: 10px;
+          }
+        }
+      }
+      .html-content{
+        padding: 40px 0px;
+      }
+      .likes-box{
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .like-warp{
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.07);
+          border-radius: 75px;
+          width: 75px;
+          height: 75px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin-bottom: 10px;
+          img{
+            width: 40px;
+            height: 40px;
+            user-select: none;
+          }
+        }
+        .like-num{
+          color: #333333;
+          font-size: 14px;
+        }
+      }
+      .comment-box{
+        width: 100%;
+        margin-top: 50px;
+        .reply-box{
+          width: 100%;
+          height: fit-content;
+          display: flex;
+          justify-content: space-between;
+          .reply-btn{
+            width: 130px;
+            height: 42px;
+            margin-left: 20px;
+            text-align: center;
+            line-height: 42px;
+            background: #4caf50;
+            border-radius: 5px;
+            user-select: none;
+            color: #fff;
+            cursor: pointer;
+          }
+        }
+        .comment-list{
+          width: 100%;
+          .comment-head{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 40px;
+            margin-top: 20px;
+            span{
+              font-size: 14px;
+              font-weight: bold;
+              color: 333;
+            }
+          }
+          .comment-item{
+            padding: 25px 0px;
+            border-bottom: 1px solid #f0eeee;
+            .two-reply{
+              margin-left: 55px;
+              padding-top: 10px;
+            }
+          }
+        }
+      }
+    }
+    .left-content{
+      width: 310px;
+      height: 500px;
+      background: #fff;
+      border-radius: 10px;
+      margin-left: 20px;
+      padding: 20px;
+      .avatar-name{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .userName{
+          margin-bottom: 0px;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+      .statistics{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 30px;
+        .center{
+          border-left: 1px solid #f0eeee;
+          border-right: 1px solid #f0eeee;
+        }
+        .item{
+          width: 33.33%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          span{
+            text-align: center;
+          }
+          .num{
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+          }
+          .title{
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+          }
+        }
+      }
+      .fans-btn{
+        width: 100%;
+        height: 40px;
+        background: #7fd682;
+        border-radius: 5px;
+        color: #fff;
+        text-align: center;
+        line-height: 40px;
+        margin-top: 30px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .fans-btn-cancle{
+        width: 100%;
+        height: 40px;
+        background: #fff;
+        border-radius: 5px;
+        color: #999;
+        text-align: center;
+        line-height: 40px;
+        margin-top: 30px;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid #999;
+      }
+      .about-hot{
+        margin-top: 30px;
+        .title-btn{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .title{
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+          }
+          .update{
+            color: #999;
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
+            img{
+              width: 15px;
+              height: 15px;
+            }
+          }
+        }
+        
+      }
+    }
+  }
+}

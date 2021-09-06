@@ -1,0 +1,126 @@
+.comment-cell-warp{
+  width: 100%;
+  height: fit-content;
+  // background: #f9f9f9;
+  .comment-cell{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    .avatar{
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      margin-right: 15px;
+    }
+    .comment-main{
+      width: 100%;
+      .userName{
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 0px;
+      }
+      .reply-title{
+        color: #999;
+        .userName{
+          font-size: 14px;
+          font-weight: 600;
+          color: #333;
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          margin-bottom: 0px;
+        }
+      }
+      .content{
+        font-size: 14px;
+        color: #494b4d;
+        margin-bottom: 16px;
+      }
+      .time-options{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left{
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          .time{
+            font-size: 12px;
+            color: #bfbfbf;
+          }
+          .see-reply{
+            background-color: #f7f9fa;
+            border-radius: 2px;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #1985ff;
+            margin-left: 8px;
+            user-select: none;
+            cursor: pointer;
+          }
+        }
+        .options{
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          span{
+            margin-left: 10px;
+            color: #494b4d;
+          }
+        }
+      }
+    }
+  }
+  .reply-input{
+    display: flex;
+    flex-direction: column;
+    padding-left: 55px;
+    margin-top: 10px;
+    .reply-option{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      .font-num-tip{
+        font-size: 14px;
+        color: #999;
+      }
+      .option{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .reply-btn-cancle{
+          width: 80px;
+          height: 30px;
+          margin-left: 20px;
+          text-align: center;
+          line-height: 30px;
+          background: #bfbfbf;
+          border-radius: 5px;
+          user-select: none;
+          color: #fff;
+          cursor: pointer;
+        }
+        .reply-btn-submit{
+          width: 80px;
+          height: 30px;
+          margin-left: 20px;
+          text-align: center;
+          line-height: 30px;
+          background: #4caf50;
+          border-radius: 5px;
+          user-select: none;
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

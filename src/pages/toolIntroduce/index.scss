@@ -1,0 +1,153 @@
+@import '../../styles/theme.scss';
+@import '../../styles/global.scss';
+.page-tool-introduce{
+  padding: 30px;
+  .tool-header{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    .title-type{
+      display: block;
+      width: 80px;
+      height: 40px;
+      // background: #fff;
+      margin-right: 20px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333333;
+    }
+    .title-selected{
+      font-size: 18px !important;
+      font-weight: 600 !important;
+    }
+  }
+  .tool-box{
+    width: 100%;
+    // min-height: calc(100vh - 156px);
+    // background: #fff;
+    // border-radius: 10px;
+    // padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    .tool{
+      width: 300px;
+      height: 300px;
+      background: #fff;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1);
+      img{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        width: 300px;
+        height: 200px;
+      }
+      .tool-title{
+        color: #333333;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px 10px;
+        margin-bottom: 0px;
+        cursor: pointer;
+      }
+      .tool-title:hover{
+        color: #6ab04c;
+      }
+      .tool-des{
+        margin-bottom: 0px;
+        padding: 0px 10px;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;//当属性值为3，表示超出3行隐藏
+        cursor: pointer;
+      }
+      .tool-des:hover{
+        color: #6ab04c;
+      }
+      .subscribe{
+        background: #bfbfbf;
+        color: #fff;
+        top: 5px;
+        right: 5px;
+        position: absolute;
+        border-radius: 5px;
+        line-height: 30px;
+        text-align: center;
+        padding: 0px 15px;
+        user-select: none;
+        cursor: pointer;
+      }
+      .subscribed{
+        background: #6ab04c;
+        color: #fff;
+        top: 5px;
+        right: 5px;
+        position: absolute;
+        border-radius: 5px;
+        line-height: 30px;
+        text-align: center;
+        padding: 0px 15px;
+        user-select: none;
+        cursor: pointer;
+      }
+      .info-show{
+        top: 0px !important;
+      }
+      .tool-info-des{
+        position: absolute;
+        top: -300px;
+        left: 0px;
+        width: 300px;
+        height: 300px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 10px;
+        padding: 10px;
+        transition: 0.5s;
+        .tool-info-des-title{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          h4{
+            color: #333;
+          }
+        }
+        p{
+          overflow-y: scroll;
+          height: 245px;
+          color: #333;
+        }
+      }
+    }
+    .empty-box{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      .empty{
+        width: 200px;
+        height: 200px;
+      }
+      p{
+        color: rgba(87, 96, 111,1.0);
+        font-size: 14px;
+        span{
+          margin-top: 20px;
+          color: $themeColor;
+          font-size: 14px;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Divider, Avatar } from '@material-ui/core';
 import { Textsms, Favorite, ThumbUpAlt } from '@material-ui/icons';
 import './index.scss';
+import { history, Link } from 'umi';
 
-interface IProps {}
+interface IProps {
+  data: any;
+}
 
 const ArticaleCard: React.FC<IProps> = (props) => {
+
   return (
     <div className="articale-card">
-      <div>
-        <p className="articale-title">Alipay</p>
+      {props.data.cover && (<img className="card-img" src={props.data.cover} alt="" />)}
+      <div className="artical-content">
+      <Link target = "_blank"  rel="opener" to={`/layout/articleDetail?id=${props.data.id}`}><p className="articale-title">{props.data.title}</p></Link>
         <div className="tags-box">
           <span>Ant Design</span>
           <span>设计语言</span>
@@ -17,8 +22,8 @@ const ArticaleCard: React.FC<IProps> = (props) => {
         </div>
         <p className="articale-desc">
           段落示意：蚂蚁金服设计平台
-          ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台
-          ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。
+          {/* ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台
+          ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。 */}
         </p>
         <div className="articale-user-info">
           <Avatar className="info-avatar">H</Avatar>
@@ -39,7 +44,6 @@ const ArticaleCard: React.FC<IProps> = (props) => {
           </div>
         </div>
       </div>
-      {/* <img className="arctcale-img" src="https://iph.href.lu/400x300" alt="" /> */}
     </div>
   );
 };

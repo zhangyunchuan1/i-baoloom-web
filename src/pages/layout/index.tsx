@@ -3,6 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import Http from '@/tool/http';
 import GlobalHeader from '../../components/GlobalHeader';
 import GlobalMenu from '../../components/GlobalMenu';
 import { useSelector, useDispatch, history } from 'umi';
@@ -19,8 +20,21 @@ const Layout: React.FC = (props) => {
 
   useEffect(() => {
     console.log('layout props', props);
+    getMyTools();
     sethidden(layoutStore.hidden);
   }, []);
+
+  //获取我的工具
+  const getMyTools = () => {
+    Http.post('/tool/myTool').then((res: any) => {
+      if (res.status === 200) {
+        dispatch({
+          type: 'menu/changeUserTools',
+          payload: res.data,
+        });
+      }
+    });
+  }
 
   const change = () => {
     dispatch({
@@ -45,6 +59,7 @@ const Layout: React.FC = (props) => {
           currentPath={menuStore.currentPath}
           change={change}
           hidden={layoutStore.hidden}
+          toolList={menuStore.userTools}
         />
         <section className="page-warp">{props.children}</section>
       </main>

@@ -1,10 +1,14 @@
 import axios from 'axios';
+import { httpUrl } from './config';
 import QS from 'qs';
 import { getDvaApp } from 'umi';
 
-axios.defaults.baseURL = 'http://47.108.158.162/api';
-// axios.defaults.baseURL = 'http://127.0.0.1:7001';
-axios.defaults.timeout = 5000; //请求超时
+const CancelToken = axios.CancelToken;
+const pendingReq = <any>{};
+
+// axios.defaults.baseURL = 'http://47.108.158.162/api';
+axios.defaults.baseURL = httpUrl;
+axios.defaults.timeout = 60000; //请求超时
 
 axios.defaults.headers.common['Content-Type'] =
   'application/json;charset=UTF-8';
@@ -17,6 +21,11 @@ axios.interceptors.request.use(
     if (token) {
       config.headers['token'] = token;
     }
+    const key = config.url + '&' + config.method;
+    pendingReq[key] && pendingReq[key]('请求取消，操作太频繁了~');
+    config.cancelToken = new CancelToken((c) => {
+      pendingReq[key] = c;
+    });
     return config;
   },
   (error) => {
@@ -39,6 +48,9 @@ axios.interceptors.response.use(
       default:
         break;
     }
+    // 取消请求
+    const key = response.config.url + '&' + response.config.method;
+    pendingReq[key] && delete pendingReq[key];
     return response;
   },
   (error) => {
@@ -50,7 +62,7 @@ const get = (url: string, params = {}) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
-        params: params,
+        params: params
       })
       .then((response) => {
         resolve(response.data);
@@ -61,11 +73,11 @@ const get = (url: string, params = {}) => {
   });
 };
 
-const post = (url: string, params = {}) => {
+const post = (url: string, params = {}, config = {}) => {
   console.log(`请求路径-${url}`);
   console.log(`请求参数-`, params);
   return new Promise((resolve, reject) => {
-    axios.post(url, params).then(
+    axios.post(url, params, config).then(
       (response) => {
         resolve(response.data);
       },

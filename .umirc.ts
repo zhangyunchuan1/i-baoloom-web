@@ -34,6 +34,18 @@ export default defineConfig({
           path: '/layout/plan',
           component: '@/pages/plan/index',
         },
+        {
+          path: '/layout/toolIntroduce',
+          component: '@/pages/toolIntroduce/index',
+        },
+        {
+          path: '/layout/userCenter',
+          component: '@/pages/userCenter/index',
+        },
+        {
+          path: '/layout/articleDetail',
+          component: '@/pages/articleDetail/index',
+        },
       ],
     },
     {
