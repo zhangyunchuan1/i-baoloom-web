@@ -1,0 +1,98 @@
+.my-article-comp{
+  .search-head{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    padding: 0px 20px;
+    .ant-picker{
+      border-radius: 5px !important;
+    }
+    .ant-select-selector{
+      border-radius: 5px !important;
+    }
+    .search-btn{
+      width: 60px;
+      height: 32px;
+      text-align: center;
+      line-height: 32px;
+      border-radius: 5px;
+      color: #6ab04c;
+      border: 1px solid #6ab04c;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+  .article-list{
+    .article-item:last-of-type{
+      border-bottom: none;
+    }
+    .article-item{
+      padding: 20px 0px;
+      border-bottom: 1px solid #f1f1f1;
+      margin: 0px 20px;
+      .title-time{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        .title{
+          font-size: 18px;
+          font-weight: 600;
+          color: #333;
+        }
+        .time{
+          font-size: 14px;
+          color: #999;
+        }
+      }
+      .num-option{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .num{
+          font-size: 14px;
+          color: #999;
+        }
+        .option{
+          span{
+            margin-left: 20px;
+            cursor: pointer;
+            user-select: none;
+          }
+        }
+      }
+    }
+  }
+  .bot-noMore{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #fff;
+    border-radius: 10px;
+    color: #333;
+    user-select: none;
+  }
+  .bot-load{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #fff;
+    border-radius: 10px;
+    color: #333;
+  }
+  .bot-load:hover{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    color: #333;
+  }
+}

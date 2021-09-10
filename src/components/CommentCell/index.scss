@@ -19,21 +19,40 @@
         font-size: 14px;
         font-weight: 600;
         color: #333;
-        width: 100%;
+        width: fit-content;
         height: 30px;
         line-height: 30px;
         margin-bottom: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .louzhu{
+        margin-left: 10px;
+        border: 1px solid #4caf50;
+        color: #4caf50;
+        font-size: 10px;
+        height: 20px;
+        line-height: 20px;
+        padding: 0px 5px;
+        border-radius: 5px;
       }
       .reply-title{
         color: #999;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         .userName{
           font-size: 14px;
           font-weight: 600;
           color: #333;
-          width: 100%;
+          width: fit-content;
           height: 30px;
           line-height: 30px;
           margin-bottom: 0px;
+        }
+        .re-tip{
+          margin: 0px 10px;
         }
       }
       .content{

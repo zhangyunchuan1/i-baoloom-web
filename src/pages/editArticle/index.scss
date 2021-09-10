@@ -1,0 +1,101 @@
+@import "../../styles/theme.scss";
+
+.page-add-article{
+  padding: 20px;
+  .content-warp{
+    display: flex;
+    justify-content: space-between;
+    .title-content{
+      background: #fff;
+      border-radius: 20px;
+      flex: 1;
+      .title-box{
+        padding: 10px;
+        background: #fff;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        .title{
+          font-size: 18px;
+          width: 100%;
+          height: 40px;
+          border: none;
+          outline: none;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+      }
+      .wangeditor{
+        background: #fff;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+      .w-e-toolbar{
+        border: none !important;
+      }
+      .w-e-text-container{
+        min-height:calc(100vh - 56px - 42px - 100px) ;
+        background: #fff;
+        border: none !important;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
+    .other-info{
+      width: 300px;
+      height: fit-content;
+      background: #fff;
+      border-radius: 20px;
+      margin-left: 20px;
+      padding: 20px;
+      .ant-select{
+        width: 100%;
+      }
+      .form-item{
+        margin-top: 20px;
+        .select-tip{
+          font-size: 12px;
+          color: #bfbfbf;
+          margin-left: 10px;
+        }
+        .ant-upload-select-picture-card{
+          width: 100%;
+          height: 150px;
+        }
+        .upload-img-box{
+          width: 100%;
+          height: 150px;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+      .btn-box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        .anticon-loading {
+          font-size: 16px !important;
+        }
+        .btn-draft{
+          padding: 5px 25px;
+          text-align: center;
+          user-select: none;
+          border-radius: 10px;
+          cursor: pointer;
+          color: #6ab04c;
+          border: 1px solid #6ab04c;
+        }
+        .btn-release{
+          padding: 5px 45px;
+          background: #6ab04c;
+          text-align: center;
+          user-select: none;
+          border-radius: 10px;
+          cursor: pointer;
+          color: #fff;
+        }
+      }
+    }
+  }
+  
+}

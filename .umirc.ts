@@ -31,6 +31,10 @@ export default defineConfig({
           component: '@/pages/addArticle/index',
         },
         {
+          path: '/layout/editArticle',
+          component: '@/pages/editArticle/index',
+        },
+        {
           path: '/layout/plan',
           component: '@/pages/plan/index',
         },

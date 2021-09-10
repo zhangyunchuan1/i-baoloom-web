@@ -17,7 +17,7 @@ const HomePage: React.FC = (props) => {
   const [hasMore, setHasMore] = useState(true);
   let _page = 1;
   let _total = 0;
-  const pageSize = 3;
+  const pageSize = 10;
 
   useEffect(()=>{
     dataListRef.current = dataList;
@@ -150,11 +150,10 @@ const HomePage: React.FC = (props) => {
             <h3>热门板块</h3>
             <div className="hot-list">
               <div className="plate-item">
-                <div className="plate-icon"></div>
-                <div className="plate-left">
-                  <p>任务大厅</p>
-                  
-                </div>
+                任务大厅
+              </div>
+              <div className="plate-item">
+                发布任务
               </div>
             </div>
           </div>

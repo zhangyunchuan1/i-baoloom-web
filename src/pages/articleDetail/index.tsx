@@ -248,6 +248,7 @@ const ArticleDetailPage: React.FC = (props) => {
                   <div className="comment-item" key={index}>
                     <CommentCell 
                       data={item} 
+                      userId={articleDetail.createBy}
                       showInputId={showInputId} 
                       showInput={handleShowReplyInput} 
                       html={commentContent}

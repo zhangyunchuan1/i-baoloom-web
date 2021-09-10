@@ -107,9 +107,20 @@
       background: #fff;
       border-radius: 10px;
       margin-left: 20px;
+      padding: 20px;
       .hot-plate{
         .hot-list{
-          
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .plate-item{
+            width: 125px;
+            height: 50px;
+            background: #bfbf;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 50px;
+          }
         }
       }
     }

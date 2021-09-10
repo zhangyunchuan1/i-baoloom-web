@@ -8,6 +8,7 @@ import { toast } from 'material-react-toastify';
 
 interface IProps {
   data: any,
+  userId: string,
   html: string,
   showInputId: string,
   showInput: Function,
@@ -51,8 +52,25 @@ const CommentCell: React.FC<IProps> = (props) => {
         ))}
         {/* <img className="avatar" src="https://img0.baidu.com/it/u=2064236049,533493186&fm=26&fmt=auto&gp=0.jpg" alt="" /> */}
         <div className="comment-main">
-          {props.data.type === "1" && (<p className="userName">{props.data.createByName}</p>)}
-          {props.data.type === "2" && (<p className="reply-title"><span className="userName">{props.data.createByName}</span> 回复 <span className="userName">{props.data.createToName}</span></p>)}
+          {props.data.type === "1" && (
+            <div className="userName">
+              {props.data.createByName}
+              {props.userId === props.data.createBy && (<div className="louzhu">楼主</div>)}
+            </div>
+          )}
+          {props.data.type === "2" && (
+            <div className="reply-title">
+              <div className="userName">
+                {props.data.createByName}
+                {props.userId === props.data.createBy && (<div className="louzhu">楼主</div>)}
+              </div>
+              <span className="re-tip">回复</span> 
+              <div className="userName">
+                {props.data.createToName}
+                {props.userId === props.data.createTo && (<div className="louzhu">楼主</div>)}
+              </div>
+            </div>
+          )}
           <div className="content" dangerouslySetInnerHTML={{__html: props.data.content}}></div>
           <div className="time-options">
             <div className="left">
@@ -102,6 +120,7 @@ const CommentCell: React.FC<IProps> = (props) => {
             <div className="two-reply" key={ind}>
               <CommentCell 
                 data={ele} 
+                userId={props.userId}
                 showInputId={props.showInputId} 
                 showInput={(id:string)=>{
                   props.showInput(id);
