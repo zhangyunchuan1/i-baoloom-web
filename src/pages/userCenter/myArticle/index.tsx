@@ -56,6 +56,25 @@ const MyArticleComp: React.FC = (props) => {
     });
   }
 
+  const handleUpdateArticleStatus = (id:string, status:string ) => {
+    let params = {
+      status,
+      id
+    };
+    Http.post('/article/updateArticleStatus' ,params).then((res: any) => {
+      if (res.status === 200) {
+        toast.success("更新成功！", {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        initArticleList();
+      }else{
+        toast.error(res.message, {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      }
+    });
+  }
+
   const changePageData = () => {
     console.log("分页：", page);
     let params = {
@@ -107,22 +126,18 @@ const MyArticleComp: React.FC = (props) => {
     getArticalType();
   }, []);
 
-  const menu = (
-    <Menu>
-      <Menu.Item onClick={handleGoToEditArticle}>
-        <span>编辑</span>
-      </Menu.Item>
-      <Menu.Item>
-        <span>设为公开</span>
-      </Menu.Item>
-      <Menu.Item>
-        <span>设为私密</span>
-      </Menu.Item>
-      <Menu.Item>
-        <span>删除</span>
-      </Menu.Item>
-    </Menu>
-  );
+  const renderMenu = (id: string, status: string) => {
+    return (
+      <Menu>
+        <Menu.Item onClick={handleGoToEditArticle}>
+          <span>编辑</span>
+        </Menu.Item>
+        {(status === "1" || status === "4") && (<Menu.Item onClick={()=>handleUpdateArticleStatus(id, "2")}><span>设为私密</span></Menu.Item>)}
+        {(status === "2" || status === "4") && (<Menu.Item onClick={()=>handleUpdateArticleStatus(id, "1")}><span>设为公开</span></Menu.Item>)}
+        {status != "4" && (<Menu.Item onClick={()=>handleUpdateArticleStatus(id, "4")}><span>删除</span></Menu.Item>)}
+      </Menu>
+    );
+  }
   return (
     <div className="my-article-comp">
       <div className="search-head">
@@ -155,7 +170,7 @@ const MyArticleComp: React.FC = (props) => {
           <Option value="1">公开</Option>
           <Option value="2">私密</Option>
           <Option value="3">草稿</Option>
-          <Option value="4">回收站</Option>
+          <Option value="4">已删除</Option>
         </Select>
         <div className="search-btn" onClick={initArticleList}>查询</div>
       </div>
@@ -164,7 +179,12 @@ const MyArticleComp: React.FC = (props) => {
           return (
             <div className="article-item" key={index}>
               <div className="title-time">
-                <span className="title">{item.title}</span>
+                <p className="title">
+                  <span className={`tag ${item.status === '1' ? "opened" : item.status === '2' ? "private" : item.status === '3' ? "draft" : item.status === '4' ? "delete" : ""}`}>
+                    {item.status === '1' ? "公开" : item.status === '2' ? "私密" : item.status === '3' ? "草稿" : item.status === '4' ? "已删除" : ""}
+                  </span>
+                  {item.title}
+                </p>
                 <span className="time">{item.createTime}</span>
               </div>
               <div className="num-option">
@@ -173,7 +193,7 @@ const MyArticleComp: React.FC = (props) => {
                 </div>
                 <div className="option">
                   <span>查看数据</span>
-                  <Dropdown overlay={menu} placement="bottomRight" arrow onVisibleChange={(e)=>{handleSelectArticle(e, item)}}>
+                  <Dropdown overlay={renderMenu(item.id ,item.status)} placement="bottomRight" arrow onVisibleChange={(e)=>{handleSelectArticle(e, item)}}>
                     <span>操作</span>
                   </Dropdown>
                 </div>

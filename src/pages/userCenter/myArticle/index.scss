@@ -41,6 +41,33 @@
           font-size: 18px;
           font-weight: 600;
           color: #333;
+          margin-bottom: 0px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+            .tag{
+              font-size: 12px;
+              font-weight: 400;
+              display: block;
+              padding: 0px 5px;
+              height: 20px;
+              line-height: 20px;
+              border-radius: 3px;
+              margin-right: 10px;
+              color: #fff;
+            }
+            .opened{
+              background: #7bed9f;
+            }
+            .private{
+              background: #ffa502;
+            }
+            .draft{
+              background: #70a1ff;
+            }
+            .delete{
+              background: #dfe4ea;
+            }
         }
         .time{
           font-size: 14px;
